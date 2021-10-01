@@ -1,5 +1,5 @@
 const initialState = {
-  delay: 5000,
+  delay: 5,
   autoScroll: true,
 }
 

@@ -6,7 +6,8 @@ class HomeCarousel extends React.Component {
 
   render() {
     const autoScroll = this.props.settings.autoScroll;
-    const delay = this.props.settings.delay;
+    let delay = parseInt(this.props.settings.delay);
+    delay = delay > 0 ? delay * 1000 : 5000;
     const interval = autoScroll ? delay : 999999999;
     return (
       <Row>

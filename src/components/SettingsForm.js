@@ -2,7 +2,8 @@ import React from "react";
 import {
   Row,
   Col,
-  Form
+  Form,
+  Alert
 } from 'react-bootstrap';
 import withStore from "../hoc/withStore";
 
@@ -17,6 +18,8 @@ class SettingsForm extends React.Component {
   }
 
   render() {
+    const delay = this.props.settings.delay;
+    const valid = delay.toString().match(/^\d+$/g);
     return (
       <>
         <h1>Change Settings</h1>
@@ -24,7 +27,12 @@ class SettingsForm extends React.Component {
           <Form.Label> 
             Delay
           </Form.Label>
-          <Form.Control type="text" value={this.props.settings.delay} onChange={this.handleChange} />
+          <Form.Control type="text" value={delay} onChange={this.handleChange} />
+          { !valid &&
+            <Alert variant="warning">
+              Delay has no effect. Please use only numbers.
+            </Alert>
+          }
         </Form.Group>
         <Form.Group>
           <Form.Check type="checkbox" checked={this.props.settings.autoScroll} onChange={this.handleCheck} label="Auto Scroll" />
