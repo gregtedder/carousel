@@ -5,11 +5,14 @@ import {Row, Col, Carousel} from 'react-bootstrap';
 class HomeCarousel extends React.Component {
 
   render() {
+    const autoScroll = this.props.settings.autoScroll;
+    const delay = this.props.settings.delay;
+    const interval = autoScroll ? delay : 999999999;
     return (
       <Row>
         <Col>
           <Carousel
-            interval={this.props.settings.delay}>
+            interval={interval}>
             <Carousel.Item>
               One
             </Carousel.Item>
