@@ -8,8 +8,8 @@ export default class App extends React.Component {
   render() {
     return (
       <Container>
-        <HomeCarousel />
         <SettingsForm />
+        <HomeCarousel />
       </Container>
     );
   }

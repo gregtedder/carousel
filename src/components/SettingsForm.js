@@ -19,17 +19,16 @@ class SettingsForm extends React.Component {
   render() {
     return (
       <>
-        <Row>
-          <Col>
-            <Form.Group>
-              <Form.Label>Delay</Form.Label>
-              <Form.Control type="text" value={this.props.settings.delay} onChange={this.handleChange} />
-            </Form.Group>
-            <Form.Group>
-              <Form.Check type="checkbox" checked={this.props.settings.autoScroll} onChange={this.handleCheck} label="Auto Scroll" />
-            </Form.Group>
-          </Col>
-        </Row>
+        <h1>Change Settings</h1>
+        <Form.Group>
+          <Form.Label> 
+            Delay
+          </Form.Label>
+          <Form.Control type="text" value={this.props.settings.delay} onChange={this.handleChange} />
+        </Form.Group>
+        <Form.Group>
+          <Form.Check type="checkbox" checked={this.props.settings.autoScroll} onChange={this.handleCheck} label="Auto Scroll" />
+        </Form.Group>
       </>
     )
   }
