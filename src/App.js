@@ -1,18 +1,16 @@
-import React from 'react';
+
 import SettingsForm from './components/SettingsForm';
 import HomeCarousel from './components/HomeCarousel';
 import { Container } from 'react-bootstrap';
 
-export default class App extends React.Component {
+export default function App() {
 
-  render() {
-    return (
-      <Container>
-        <SettingsForm />
-        <HomeCarousel />
-      </Container>
-    );
-  }
+  return (
+    <Container>
+      <SettingsForm />
+      <HomeCarousel />
+    </Container>
+  );
 
 }
 

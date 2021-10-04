@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const AppState = () => {
   const [delay, setDelay] = useState(5);

@@ -1,7 +1,10 @@
-import React from "react";
-import { Row, Col, Carousel } from 'react-bootstrap';
+
+import { Row, Col } from 'react-bootstrap';
+import Slider from 'react-slick';
 import { useBetween } from 'use-between';
 import AppState from "../state/AppState";
+import Slide from '../components/Slide';
+import HomeSlides from '../settings/HomeSlides';
 
 const HomeCarousel = () => {
 
@@ -10,52 +13,32 @@ const HomeCarousel = () => {
   let _delay = parseInt(delay);
   _delay = _delay > 0 ? _delay * 1000 : 5000;
   const interval = autoScroll ? _delay : 999999999;
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToScroll: 1,
+    adaptiveHeight: true,
+    autoplay: true,
+    autoplaySpeed: interval,
+    arrows: true,
+    pauseOnFocus: false,
+    pauseOnHover: false,
+  }
   return (
     <Row>
       <Col>
-        <Carousel
-          interval={interval}>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src="screen_1.png"
-              alt="screen 1" />
-            <Carousel.Caption>
-              <h3>Did the work in VSCode</h3>
-              <p>Just because</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src="screen_2.png"
-              alt="screen 2" />
-            <Carousel.Caption>
-              <h3>Over-complicated with redux</h3>
-              <p>Had to do something fun with it</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src="screen_3.png"
-              alt="screen 3" />
-            <Carousel.Caption>
-              <h3>Used a HOC to connect components to the store</h3>
-              <p>More flexible than the container pattern</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src="screen_4.png"
-              alt="screen 4" />
-            <Carousel.Caption>
-              <h3>And redux helped keep App simple</h3>
-              <p>No need to push state up</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-        </Carousel>
+        <Slider {...settings}>
+          { 
+            HomeSlides.map((obj, idx) => {
+              return (
+                <div key={["Slide", idx].join('')}>
+                  <Slide {...obj} />
+                </div>
+              );
+            })
+          }
+        </Slider>
       </Col>
     </Row>
   );
