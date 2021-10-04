@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import Slider from 'react-slick';
 import { useBetween } from 'use-between';

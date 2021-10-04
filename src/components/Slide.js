@@ -1,5 +1,7 @@
+import React from "react";
+import PropTypes from 'prop-types';
 
-export default function Slide(props) {
+function Slide(props) {
   return (
     <>
       <h3 className="center">{props.heading}</h3>
@@ -12,3 +14,12 @@ export default function Slide(props) {
     </>
   );
 }
+
+Slide.propTypes = {
+  heading: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired
+}
+
+export default Slide;
