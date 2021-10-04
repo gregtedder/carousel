@@ -1,46 +1,45 @@
 import React from "react";
 import {
-  Row,
-  Col,
   Form,
   Alert
 } from 'react-bootstrap';
-import withStore from "../hoc/withStore";
+import { useBetween } from 'use-between';
+import AppState from "../state/AppState";
 
-class SettingsForm extends React.Component {
+const SettingsForm = () => {
 
-  handleChange = (evt) => {
-    this.props.updateDelay(evt.target.value);
+  const { delay, setDelay, autoScroll, setAutoScroll } = useBetween(AppState);
+
+  const handleChange = (evt) => {
+    setDelay(evt.target.value);
   }
 
-  handleCheck = (evt) => {
-    this.props.updateAutoScroll(!this.props.settings.autoScroll);
+  const handleCheck = () => {
+    setAutoScroll(!autoScroll);
   }
 
-  render() {
-    const delay = this.props.settings.delay;
-    const valid = delay.toString().match(/^\d+$/g);
-    return (
-      <>
-        <h1>Change Settings</h1>
-        <Form.Group>
-          <Form.Label> 
-            Delay
-          </Form.Label>
-          <Form.Control type="text" value={delay} onChange={this.handleChange} />
-          { !valid &&
-            <Alert variant="warning">
-              Delay has no effect. Please use only numbers.
-            </Alert>
-          }
-        </Form.Group>
-        <Form.Group>
-          <Form.Check type="checkbox" checked={this.props.settings.autoScroll} onChange={this.handleCheck} label="Auto Scroll" />
-        </Form.Group>
-      </>
-    )
-  }
+  const _delay = delay;
+  const _valid = delay.toString().match(/^\d+$/g);
+  return (
+    <>
+      <h1>Change Settings</h1>
+      <Form.Group>
+        <Form.Label> 
+          Delay
+        </Form.Label>
+        <Form.Control type="text" value={_delay} onChange={handleChange} />
+        { !_valid &&
+          <Alert variant="warning">
+            Delay has no effect. Please use only numbers.
+          </Alert>
+        }
+      </Form.Group>
+      <Form.Group>
+        <Form.Check type="checkbox" checked={autoScroll} onChange={handleCheck} label="Auto Scroll" />
+      </Form.Group>
+    </>
+  )
 
 }
 
-export default withStore(SettingsForm);
+export default SettingsForm;
